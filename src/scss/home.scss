@@ -1,0 +1,222 @@
+.twitterDefaultView {
+  position: relative;
+  box-sizing: border-box;
+  height: 100vh;
+  overflow-y: scroll;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 12px;
+    background-image: url("../img/Polygon-1.svg");
+    background-image: url("../img/Polygon-2.svg");
+    background-image: url("../img/Polygon-3.svg");
+  }
+
+  .blackBack {
+    @include blackBack("../img/wave.svg");
+    
+
+    .userInfo {
+      color: #fff;
+      width: 100%;
+      max-width: 362px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+
+      .userImg {
+        width: 100%;
+        max-width: 86px;
+        max-height: 86px;
+        border-radius: 50%;
+        background-color: #faff00;
+        position: relative;
+
+        img {
+          position: absolute;
+          top: 30%;
+          right: 50%;
+          bottom: 50%;
+          left: 32%;
+        }
+      }
+
+      .twitterViewUser {
+        /* padding-bottom: 0.5em; */
+        margin-bottom: 32px;
+        min-width: 248px;
+
+        .twitterUserDetails p {
+          color: rgba(255, 255, 255, 0.8);
+          width: 100%;
+          min-width: 100px;
+          font-size: 1em;
+        }
+
+        .twitterUserDetails {
+          border-bottom: 1px solid rgba(128, 0, 128, 0.9);
+          display: flex;
+          flex-direction: column;
+          justify-content: space-evenly;
+          text-align: left;
+
+          .tagNameLocation {
+            display: flex;
+            justify-content: space-evenly;
+            padding-bottom: 1em;
+            font-style: italic;
+          }
+
+          .follows {
+            display: flex;
+            justify-content: space-evenly;
+            padding-bottom: 0.5em;
+          }
+
+          .number {
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+
+  .tweetContainer {
+    position: absolute;
+    top: 20%;
+    padding: 0 2em;
+    min-height: 100vh;
+
+    .tweet {
+      width: 100%;
+      max-width: 344px;
+      margin: 0 auto;
+      margin-top: 2em;
+      border-radius: 2%;
+      border: 1px solid rgba(129, 129, 129, 0.8);
+      box-shadow: 1px 1px 1px 1px rgba(106, 106, 107, 0.5);
+
+      .tweetHeader {
+        border-top-right-radius: inherit;
+        border-top-left-radius: inherit;
+        background-color: #faff00;
+        display: flex;
+        justify-content: space-around;
+        padding: 0.7em;
+
+        .name {
+          font-weight: 600;
+        }
+      }
+
+      .tweetBody {
+        color: rgb(129, 129, 129);
+        background-color: #fff;
+        padding: 0.5em 1em 1em 1em;
+        width: 100%;
+      }
+
+      .tweetMessage {
+        font-size: 0.9em;
+        padding: 0.5em 1em 1em 1em;
+        text-align: left;
+      }
+
+      .like-share-icons {
+        width: 90%;
+        max-width: 90%;
+        margin: 0 auto;
+        padding-top: 1em;
+        font-weight: 600;
+        display: flex;
+        justify-content: space-around;
+        border-top: 1px solid rgba(129, 129, 129, 0.5);
+
+        .likes {
+          width: 60px;
+          position: relative;
+          display: flex;
+          overflow: hidden;
+          cursor: pointer;
+
+          img {
+            &:hover {
+              background-color: rgba(250, 0, 208,0.8);
+            }
+          }
+
+          p {
+            position: absolute;
+            top: 50%;
+            right: 8px;
+            transform: translate(0, -40%);
+
+            &:hover {
+              color: rgb(250, 0, 208);
+            }
+          }
+        }
+
+        .retweet {
+          width: 60px;
+          position: relative;
+          display: flex;
+          overflow: hidden;
+          cursor: pointer;
+
+          img {
+            &:hover {
+              background-color: rgba(250, 0, 208,0.8);
+            }
+          }
+
+          p {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translate(0, -40%);
+
+            &:hover {
+              color: rgb(250, 0, 208);
+            }
+          }
+        }
+
+        .reply {
+          width: 55px;
+          position: relative;
+          display: flex;
+          overflow: hidden;
+          cursor: pointer;
+
+          img {
+            &:hover {
+              background-color: rgba(250, 0, 208,0.8);
+            }
+
+          }
+
+          p {
+            position: absolute;
+            top: 50%;
+            right: 5px;
+            transform: translate(0, -40%);
+            
+            &:hover {
+              color: rgb(250, 0, 208);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .createNewTweet {
+    cursor: pointer;
+    position: fixed;
+    bottom: 2em;
+    right: 2em;
+    z-index: 10000;
+  }
+}

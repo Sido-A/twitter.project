@@ -10,7 +10,13 @@ const resolveAppPath = (relativePath) =>
 module.exports = {
   mode: "development",
 
-  entry: resolveAppPath("src"),
+  entry: ["babel-polyfill", resolveAppPath("src")],
+
+  watchOptions: {
+    aggregateTimeout: 300, // Process all changes which happened in this time into one rebuild
+    poll: 1000, // Check for changes every second,
+    ignored: /node_modules/,
+  },
 
   output: {
     filename: "static/js/bundle.[hash].js",
@@ -39,5 +45,51 @@ module.exports = {
       inject: true,
       template: resolveAppPath("public/index.html"),
     }),
+
+    new HtmlWebpackPlugin({
+      filename: "home.html",
+      template: resolveAppPath("public/home.html"),
+    }),
+
+    new HtmlWebpackPlugin({
+      filename: "tweeting.html",
+      template: resolveAppPath("public/tweeting.html"),
+    }),
   ],
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
+        use: ["style-loader", "css-loader", "sass-loader"],
+      },
+      {
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"],
+          },
+        },
+      },
+      {
+        test: /\.(jpg|jpeg|gif|png|svg|webp)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              outputPath: "./images",
+              name: "[name].[ext]",
+            },
+          },
+        ],
+      },
+      {
+        test: /\.html$/,
+        use: {
+          loader: "html-loader",
+        },
+      },
+    ],
+  },
 };

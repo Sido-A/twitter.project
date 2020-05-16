@@ -1,0 +1,25 @@
+
+
+
+@mixin blackBack($imgUrl) {
+  background: url($imgUrl) no-repeat;
+  background-size: cover;
+  padding-top: 40px;
+  height: 337px;
+}
+
+@mixin submitButton{
+      color: #000;
+      cursor: pointer;
+      outline: none;
+      border: none;
+      border-radius: 3px;
+      font-weight: 900;
+      width: 100%;
+      max-width: 116px;
+      margin: 0 auto;
+      margin-top: 49px;
+      padding: 8px 35px;
+      background-color: #faff00;
+    
+}
