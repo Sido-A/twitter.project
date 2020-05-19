@@ -55,6 +55,10 @@ module.exports = {
       filename: "tweeting.html",
       template: resolveAppPath("public/tweeting.html"),
     }),
+    new HtmlWebpackPlugin({
+      filename: "comments.html",
+      template: resolveAppPath("public/comments.html"),
+    }),
   ],
   module: {
     rules: [

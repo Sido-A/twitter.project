@@ -8,8 +8,8 @@
   height: 337px;
 }
 
-@mixin submitButton{
-      color: #000;
+@mixin submitButton($color,$bgColor){
+      color: $color;
       cursor: pointer;
       outline: none;
       border: none;
@@ -20,6 +20,6 @@
       margin: 0 auto;
       margin-top: 49px;
       padding: 8px 35px;
-      background-color: #faff00;
+      background-color: $bgColor;
     
 }

@@ -24,7 +24,7 @@
 
       .postTweet {
         button {
-          @include submitButton;
+          @include submitButton(#000,#faff00);
           font-weight: 600;
           padding: 7px 20px;
           margin-top: 0;

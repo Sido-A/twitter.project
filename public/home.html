@@ -3,9 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link rel="stylesheet" href="../css/normalise.css" />
-    <link rel="stylesheet" href="../css/global.css">
-    <link rel="stylesheet" href="../css/home.css" /> -->
     <title>Twitter-Home</title>
   </head>
 
@@ -15,33 +12,16 @@
       <div class="blackBack">
         <!--keep-->
         <div class="userInfo">
-          <!--user-->
-          <div class="userImg">
-            <img src="../src/img/camera.png" alt="some image" />
+          <div class="userImgWrap">
+            <img
+              class="profileImg"
+              src="../src/img/camera.png"
+              alt="some image"
+            />
+            <input type="file" name="" class="chooseFile" />
           </div>
-          <div class="twitterViewUser">
-            <h1>Coders In Hoods</h1>
-            <div class="twitterUserDetails">
-              <div class="tagNameLocation">
-                <p class="tagName">&#64;name</p>
-                <p class="location">location</p>
-              </div>
-              <!--tagNameLocation-->
-              <div class="follows">
-                <p class="followers">
-                  <strong class="number">1</strong> Followers
-                </p>
-                <p class="following">
-                  <strong class="number">1</strong> Following
-                </p>
-              </div>
-              <!--follows-->
-            </div>
-            <!--twitterUserDetails-->
-          </div>
-          <!--twitterViewUser-->
         </div>
-        <!--userInfo--><!--user-->
+        <!--userInfo-->
       </div>
       <!--black back-->
 
@@ -65,22 +45,34 @@
             <!--tweetMessage-->
             <div class="like-share-icons">
               <div class="likes">
-                <img src="../src/img/heart.svg" alt="" />
                 <p>25</p>
               </div>
               <!--likes-->
               <div class="retweet">
-                <img src="../src/img/retweet.svg" alt="" />
                 <p>150</p>
               </div>
               <!--retweet-->
-              <div class="reply">
-                <img src="../src/img/reply.svg" alt="" />
+              <a class="reply" href="#">
                 <p>30</p>
-              </div>
+              </a>
               <!--reply-->
             </div>
             <!--like-share-icons-->
+
+            <div class="typeReplyWrapper" id="typeReplyWrapperBlock">
+              <div class="typeReply">
+                <textarea name="reply" id="replyBody" cols="30" rows="10"></textarea>
+                <div class="typeReplyFooter">
+                  <div class="goBack"><a href="#">←</a></div>
+                  <!--go-back-->
+                  <div class="postTweet">
+                    <button type="submit">Reply</button>
+                  </div>
+                  <!--post-tweet-->
+                </div><!--typeReplyFooter-->
+              </div><!--typeReply-->
+            </div><!--typeReplyWrapper-->
+            
           </div>
           <!--tweetBody-->
         </div>
