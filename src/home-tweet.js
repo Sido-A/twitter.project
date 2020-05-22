@@ -1,120 +1,154 @@
-/* <div class="tweet">
-          <div class="tweetHeader">
-            <p class="name">name</p>
-            <p class="postDate">post date</p>
-          </div>
-          <!--tweetHeader-->
-          <div class="tweetBody">
-            <div class="tweetMessage">
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut,
-                illo? Excepturi id totam accusantium at obcaecati deserunt
-                dolor. Minima, placeat laudantium maiores rem alias ad quos
-                suscipit impedit quia similique?
-              </p>
-            </div>
-            <!--tweetMessage-->
-            <div class="like-share-icons">
-              <div class="likes">
-                <img src="#" alt="" />
-                <p>25</p>
-              </div>
-              <!--likes-->
-              <div class="retweet">
-                <img src="#" alt="" />
-                <p>150</p>
-              </div>
-              <!--retweet-->
-              <div class="reply">
-                <img src="#" alt="" />
-                <p>30</p>
-              </div>
-              <!--reply-->
-            </div>
-            <!--like-share-icons-->
-          </div>
-          <!--tweetBody-->
-        </div>
-        <!--tweet--><div class="tweet">
-          <div class="tweetHeader">
-            <p class="name">name</p>
-            <p class="postDate">post date</p>
-          </div>
-          <!--tweetHeader-->
-          <div class="tweetBody">
-            <div class="tweetMessage">
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut,
-                illo? Excepturi id totam accusantium at obcaecati deserunt
-                dolor. Minima, placeat laudantium maiores rem alias ad quos
-                suscipit impedit quia similique?
-              </p>
-            </div>
-            <!--tweetMessage-->
-            <div class="like-share-icons">
-              <div class="likes">
-                <img src="#" alt="" />
-                <p>25</p>
-              </div>
-              <!--likes-->
-              <div class="retweet">
-                <img src="#" alt="" />
-                <p>150</p>
-              </div>
-              <!--retweet-->
-              <div class="reply">
-                <img src="#" alt="" />
-                <p>30</p>
-              </div>
-              <!--reply-->
-            </div>
-            <!--like-share-icons-->
-          </div>
-          <!--tweetBody-->
-        </div>
-        // <!--tweet--> */
+import { patchComment } from "./json.constructor";
+import API from "./API";
+import { newDate } from "./create.new.tweet";
 
 //DOM
 const userInfo = document.querySelector(".userInfo");
-const parseUser = JSON.parse(localStorage.getItem("user"));
+export const parseUser = JSON.parse(localStorage.getItem("user"));
+const EveryTweets = JSON.parse(localStorage.getItem("EveryTweets"));
 const userImgWrap = document.querySelector(".userImgWrap");
 const tweetContainer = document.querySelector(".tweetContainer");
 const newTweet = document.querySelector(".createNewTweet");
+// console.log(parseUser);
+// console.log("fast", EveryTweets);
 
-const clickReply = ()=> {
-  const reply = document.querySelector("a.reply");
+const clickRetweets = () => {
+  const retweets = document.querySelectorAll(".retweet");
+  retweets.forEach((retweet) => {
+    if (retweet) {
+      retweet.addEventListener("click", (e) => {
+        const tweets = document.querySelectorAll(".tweet");
+        tweets.forEach((tweet) => {
+          // need to find a solution to look for a number on array of string :/
+          const targetId = e.target.classList[1];
+
+          const hasClass = tweet.classList.contains(`tweet-id${targetId}`);
+          const retweetCounter = document.querySelector(
+            `.retweetNumber${targetId}`
+          );
+          if (hasClass) {
+            const CurrentTotalRetweetNumber =
+              parseInt(retweetCounter.innerText) + 1;
+            const getUserIndexOfComment = EveryTweets[targetId - 1];
+            getUserIndexOfComment["retweets"] = CurrentTotalRetweetNumber;
+
+            localStorage.setItem("EveryTweets", JSON.stringify(EveryTweets));
+            patchComment(targetId, { retweets: CurrentTotalRetweetNumber });
+            retweetCounter.innerText = CurrentTotalRetweetNumber;
+          }
+        });
+      });
+    }
+  });
+};
+
+const clickLikes = () => {
+  const likes = document.querySelectorAll(".likes");
+  likes.forEach((like) => {
+    if (like) {
+      like.addEventListener("click", (e) => {
+        const tweets = document.querySelectorAll(".tweet");
+        tweets.forEach((tweet) => {
+          // need to find a solution to look for a number on array of string :/
+          const targetId = e.target.classList[1];
+          const hasClass = tweet.classList.contains(`tweet-id${targetId}`);
+          const likeCounter = document.querySelector(`.likesNumber${targetId}`);
+          if (hasClass) {
+            const CurrentTotalLikesNumber = parseInt(likeCounter.innerText) + 1;
+            const getUserIndexOfComment = EveryTweets[targetId - 1];
+            getUserIndexOfComment["likes"] = CurrentTotalLikesNumber;
+
+            localStorage.setItem("EveryTweets", JSON.stringify(EveryTweets));
+            patchComment(targetId, { likes: CurrentTotalLikesNumber });
+            likeCounter.innerText = CurrentTotalLikesNumber;
+          }
+        });
+      });
+    }
+  });
+};
+
+const postReply = () => {
+  const replyButtons = document.querySelectorAll(".postReply button");
+  replyButtons.forEach((replyButton) => {
+    if (replyButton) {
+      replyButton.addEventListener("click", (e) => {
+        const replyBodies = document.querySelectorAll("#replyBody");
+        replyBodies.forEach((replyBody) => {
+          const targetId = replyBody.classList[1];
+          const hasClass = replyBody.classList.contains(
+            `textValue-id${targetId}`
+          );
+          if (hasClass) {
+            const replyBodyValue = replyBody.value;
+            const userId = parseUser.id;
+            console.log(targetId, replyBodyValue);
+            const newReplyCommentObj = {
+              userId: userId,
+              tweetId: targetId,
+              content: replyBodyValue,
+              date: newDate,
+            };            
+          }
+        });
+      });
+    }
+  });
+};
 
 
-    reply.addEventListener("click", (e) => {
-      console.log(e.target);
-      
-      // const typeReplyWrapperId = document.querySelector("#typeReplyWrapperBlock")
-      // const typeReplyWrapperClass = document.querySelector(".typeReplyWrapper")
+// const currentReplies = document.querySelectorAll(".reply p")
+// currentReplies.forEach(currentReply => {
+//   const currentTotalReplies = parseInt(currentReply.innerText) + 1;
+//   console.log("update", currentTotalReplies);
+//   currentReply.innerText = currentTotalReplies;
+// })
+//show comment input when click reply icon and hide with arrow click
+const clickReplyIcon = () => {
+  const replies = document.querySelectorAll(".reply");
+  replies.forEach((reply) => {
+    if (reply) {
+      reply.addEventListener("click", (e) => {
+        const tweets = document.querySelectorAll(".tweet");
+        tweets.forEach((tweet) => {
+          const targetId = e.target.id;
+          const hasClass = tweet.classList.contains(`tweet-id${targetId}`);
+          if (hasClass) {
+            const uniqueId = document.querySelector(`.unique${targetId}`);
+            const typeReplyWrapperClass = document.querySelector(
+              `.typeReplyWrapper`
+            );
+            const goBack = document.querySelector(`.goBack${targetId}`);
 
-      // if (typeReplyWrapperClass) {
-      //   console.log("HELLO");
-      //   typeReplyWrapperId.classList.remove("typeReplyWrapper")
-      // } else {
-      //   typeReplyWrapperId.classList.add("typeReplyWrapper")
-      // }
+            if (typeReplyWrapperClass) {
+              uniqueId.classList.remove("typeReplyWrapper");
+            }
+            goBack.addEventListener("click", () => {
+              uniqueId.classList.add("typeReplyWrapper");
+            });
+          }
+        });
+      });
+    }
+  });
+  postReply();
+};
 
-    })
-}
+// create tweet that has been stored in JSON
+const renderTweet = (tweetsArray) => {
+  tweetsArray.forEach((tweet) => {    
+    const userName = tweet.user.name;
 
-
-const renderTweet = (parseUser) => {
-  const tweets = parseUser.tweets;
-  tweets.forEach((tweet) => {
     if (tweet.reply === undefined) {
       tweet.reply = 0;
     }
 
     if (tweetContainer) {
       const tweetBox = document.createElement("div");
-      tweetBox.classList.add("tweet");
+      tweetBox.classList.add("tweet", `tweet-id${tweet.id}`);
       tweetBox.innerHTML = `
           <div class="tweetHeader">
-            <p class="name">${parseUser.name}</p>
+            <p class="name">${userName}</p>
             <p class="postDate">${tweet.date}</p>
           </div>
           <!--tweetHeader-->
@@ -124,28 +158,28 @@ const renderTweet = (parseUser) => {
             </div>
             <!--tweetMessage-->
             <div class="like-share-icons">
-              <div class="likes">
-                <p>${tweet.likes}</p>
+              <div class="likes ${tweet.id}">
+                <p class="likesNumber${tweet.id} ${tweet.id}">${tweet.likes}</p>
               </div>
               <!--likes-->
-              <div class="retweet">
-                <p>${tweet.retweets}</p>
+              <div class="retweet ${tweet.id}">
+                <p class="retweetNumber${tweet.id} ${tweet.id}">${tweet.retweets}</p>
               </div>
               <!--retweet-->
-              <a class="reply" id="${tweet.id}" href="#">
-                <p>${tweet.reply}</p>
-              </a>
+              <div class="reply reply-id${tweet.id} ${tweet.id}" id="${tweet.id}">
+                <p>${tweet.comments.length}</p>
+              </div>
               <!--reply-->
             </div>
             <!--like-share-icons-->
-            
-            <div class="typeReplyWrapper" id="typeReplyWrapperBlock">
+
+            <div class="typeReplyWrapper unique${tweet.id}" id="typeReplyWrapperBlock">
               <div class="typeReply">
-                <textarea name="reply" id="replyBody" cols="30" rows="10"></textarea>
+                <textarea class="textValue-id${tweet.id} ${tweet.id}" name="reply" id="replyBody" cols="30" rows="10"></textarea>
                 <div class="typeReplyFooter">
-                  <div class="goBack"><a href="#">←</a></div>
+                  <div class="goBack"><span class="goBack${tweet.id}">←</span></div>
                   <!--go-back-->
-                  <div class="postTweet">
+                  <div class="postReply">
                     <button type="submit">Reply</button>
                   </div>
                   <!--post-tweet-->
@@ -157,8 +191,13 @@ const renderTweet = (parseUser) => {
       tweetContainer.append(tweetBox);
     }
   });
+
+  clickReplyIcon();
+  clickLikes();
+  clickRetweets();
 };
 
+//top user info
 export const renderUserInfo = (parseUser) => {
   if (userInfo) {
     const twitterViewUser = document.createElement("div");
@@ -210,7 +249,11 @@ export const clickNewTweet = () => {
   }
 };
 
-renderTweet(parseUser);
+API.getTweets().then((tweets) => {
+  localStorage.setItem("EveryTweets", JSON.stringify(tweets));
+
+  renderTweet(tweets);
+});
+
 renderUserInfo(parseUser);
 changeUserImg(parseUser);
-clickReply();

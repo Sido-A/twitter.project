@@ -1,12 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Twitter-Comments</title>
-</head>
-<body>
-    <div>a</div>
-    
-</body>
+  </head>
+  <body>
+    <div class="commentsWrapper">
+      <div class="commentsHeader">
+        <div class="goBack">
+          <a href="./home.html"><p>←</p></a>
+          <p>Tweet</p>
+        </div>
+        <!--go-back-->
+      </div>
+      <!--commentsHeader-->
+      <div class="commentsBodyWrapper">
+        <div class="commentsBody">
+          <div class="MainComment">
+            <div class="MainCommentHeader">
+              <div class="profilePhoto">
+                <img src="#" alt="profile photo" />
+              </div>
+              <!--profilePhoto-->
+              <div class="userDetails">
+                <h1>Abe</h1>
+                <p>@SidonieAbe</p>
+              </div>
+              <!--userDetails-->
+            </div>
+            <!--MainCommentHeader-->
+            <div class="MainCommentBody">
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Inventore, nostrum a ipsum natus voluptates perspiciatis illo
+                maxime tenetur soluta, impedit incidunt obcaecati! Repudiandae
+                repellat nesciunt blanditiis laborum dignissimos? Nesciunt,
+                dignissimos?
+              </p>
+            </div>
+            <!--MainCommentBody-->
+            <!--commentBody-->
+            <div class="MainCommentFooter">
+              <div class="like-share-icons">
+                <div class="likes">
+                  <p class="likesNumber">
+                    123
+                  </p>
+                </div>
+                <!--likes-->
+                <div class="retweet">
+                  <p class="retweetNumber">
+                    150
+                  </p>
+                </div>
+                <!--retweet-->
+                <div class="reply">
+                  <p>120</p>
+                </div>
+                <!--reply-->
+              </div>
+              <!--like-share-icons-->
+            </div>
+            <!--commentFooter-->
+            <div class="replyToComment replyToCommentBlock">
+              <textarea name="" id="replyBody" cols="30" rows="10"></textarea>
+              <div class="replyToCommentFooter">
+                <div class="goBack"><p>←</p></div>
+                <!--go-back-->
+                <div class="postReply">
+                  <button type="submit">Tweet</button>
+                </div>
+                <!--postReply-->
+              </div>
+              <!--replyToCommentFooter-->
+            </div>
+            <!--replyToComment-->
+          </div>
+          <!--comment-->
+          <h3>COMMENTS</h3>
+          <div class="commentsTree">
+            <div class="treeComment">
+              <div class="treeCommentHeader">
+                <div class="profilePhoto">
+                  <img src="#" alt="profile photo" />
+                </div><!--profilePhoto-->
+                <div class="userDetails">
+                  <h1>Abe</h1>
+                  <p>@SidonieAbe</p>
+                </div><!--userDetails-->
+              </div><!--treeCommentHeader-->
+              <div class="treeCommentBody">
+                <p>
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Fugiat itaque minima iste delectus soluta explicabo repellat
+                  hic asperiores? Blanditiis aliquam fuga est molestias
+                  exercitationem, iste culpa accusamus rerum maiores in.
+                </p>
+              </div><!--treeCommentBody-->
+            </div><!--treeComment-->
+            <div class="treeComment">
+                <div class="treeCommentHeader">
+                    <div class="profilePhoto">
+                        <img src="#" alt="profile photo" />
+                    </div>
+                    <!--profilePhoto-->
+                    <div class="userDetails">
+                        <h1>Abe</h1>
+                        <p>@SidonieAbe</p>
+                    </div>
+                    <!--userDetails-->
+                </div>
+                <!--treeCommentHeader-->
+                <div class="treeCommentBody">
+                    <p>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                        Fugiat itaque minima iste delectus soluta explicabo repellat
+                        hic asperiores? Blanditiis aliquam fuga est molestias
+                        exercitationem, iste culpa accusamus rerum maiores in.
+                    </p>
+                </div>
+                <!--treeCommentBody-->
+            </div>
+            <!--treeComment-->
+          </div><!--commentsTree-->
+          <!--commentsBody-->
+        </div>
+        <!--commentsBodyWrapper-->
+        <div class="CreateNewCommentButton">
+          <a href="#"
+            ><img
+              src="../src/img/create-new-comment.svg"
+              alt="create new comment"
+            />
+          </a>
+        </div><!--CreateNewCommentButton-->
+        <!--createNewTweet-->
+      </div>
+      <!--commentsWrapper-->
+    </div>
+  </body>
 </html>

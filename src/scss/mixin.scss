@@ -5,7 +5,7 @@
   background: url($imgUrl) no-repeat;
   background-size: cover;
   padding-top: 40px;
-  height: 337px;
+  min-height: 337px;
 }
 
 @mixin submitButton($color,$bgColor){
