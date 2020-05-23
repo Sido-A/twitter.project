@@ -1,16 +1,16 @@
-import { patchComment } from "./json.constructor";
+import { countUpNumbers, sendReplies } from "./json.constructor";
 import API from "./API";
 import { newDate } from "./create.new.tweet";
+import { goToCommentTree} from"./comment.tweet";
+
 
 //DOM
 const userInfo = document.querySelector(".userInfo");
 export const parseUser = JSON.parse(localStorage.getItem("user"));
-const EveryTweets = JSON.parse(localStorage.getItem("EveryTweets"));
+export const EveryTweets = JSON.parse(localStorage.getItem("EveryTweets"));
 const userImgWrap = document.querySelector(".userImgWrap");
 const tweetContainer = document.querySelector(".tweetContainer");
 const newTweet = document.querySelector(".createNewTweet");
-// console.log(parseUser);
-// console.log("fast", EveryTweets);
 
 const clickRetweets = () => {
   const retweets = document.querySelectorAll(".retweet");
@@ -33,7 +33,9 @@ const clickRetweets = () => {
             getUserIndexOfComment["retweets"] = CurrentTotalRetweetNumber;
 
             localStorage.setItem("EveryTweets", JSON.stringify(EveryTweets));
-            patchComment(targetId, { retweets: CurrentTotalRetweetNumber });
+            countUpNumbers(parseInt(targetId), {
+              retweets: CurrentTotalRetweetNumber,
+            });
             retweetCounter.innerText = CurrentTotalRetweetNumber;
           }
         });
@@ -59,7 +61,9 @@ const clickLikes = () => {
             getUserIndexOfComment["likes"] = CurrentTotalLikesNumber;
 
             localStorage.setItem("EveryTweets", JSON.stringify(EveryTweets));
-            patchComment(targetId, { likes: CurrentTotalLikesNumber });
+            countUpNumbers(parseInt(targetId), {
+              likes: CurrentTotalLikesNumber,
+            });
             likeCounter.innerText = CurrentTotalLikesNumber;
           }
         });
@@ -73,29 +77,34 @@ const postReply = () => {
   replyButtons.forEach((replyButton) => {
     if (replyButton) {
       replyButton.addEventListener("click", (e) => {
-        const replyBodies = document.querySelectorAll("#replyBody");
-        replyBodies.forEach((replyBody) => {
-          const targetId = replyBody.classList[1];
-          const hasClass = replyBody.classList.contains(
-            `textValue-id${targetId}`
-          );
-          if (hasClass) {
-            const replyBodyValue = replyBody.value;
-            const userId = parseUser.id;
-            console.log(targetId, replyBodyValue);
+        const targetId = e.target.classList[1];
+        const hasClass = replyButton.classList.contains(
+          `replyButton-id${targetId}`
+        );
+
+        if (hasClass) {
+          const textValue = document.querySelector(`.textValue-id${targetId}`)
+            .value;
+          const replyBodyValue = textValue;
+          const userId = parseUser.id;
+
+          if (replyBodyValue !== "") {
             const newReplyCommentObj = {
               userId: userId,
-              tweetId: targetId,
+              tweetId: parseInt(targetId),
               content: replyBodyValue,
               date: newDate,
-            };            
+            };
+
+            sendReplies(newReplyCommentObj);
           }
-        });
+
+          location.reload();
+        }
       });
     }
   });
 };
-
 
 // const currentReplies = document.querySelectorAll(".reply p")
 // currentReplies.forEach(currentReply => {
@@ -103,8 +112,9 @@ const postReply = () => {
 //   console.log("update", currentTotalReplies);
 //   currentReply.innerText = currentTotalReplies;
 // })
+
 //show comment input when click reply icon and hide with arrow click
-const clickReplyIcon = () => {
+const clickCommentToTweet = () => {
   const replies = document.querySelectorAll(".reply");
   replies.forEach((reply) => {
     if (reply) {
@@ -112,6 +122,7 @@ const clickReplyIcon = () => {
         const tweets = document.querySelectorAll(".tweet");
         tweets.forEach((tweet) => {
           const targetId = e.target.id;
+
           const hasClass = tweet.classList.contains(`tweet-id${targetId}`);
           if (hasClass) {
             const uniqueId = document.querySelector(`.unique${targetId}`);
@@ -136,7 +147,7 @@ const clickReplyIcon = () => {
 
 // create tweet that has been stored in JSON
 const renderTweet = (tweetsArray) => {
-  tweetsArray.forEach((tweet) => {    
+  tweetsArray.forEach((tweet) => {
     const userName = tweet.user.name;
 
     if (tweet.reply === undefined) {
@@ -174,13 +185,13 @@ const renderTweet = (tweetsArray) => {
             <!--like-share-icons-->
 
             <div class="typeReplyWrapper unique${tweet.id}" id="typeReplyWrapperBlock">
-              <div class="typeReply">
+              <div class="typeReply ${tweet.id} typeReply-id${tweet.id}">
                 <textarea class="textValue-id${tweet.id} ${tweet.id}" name="reply" id="replyBody" cols="30" rows="10"></textarea>
                 <div class="typeReplyFooter">
                   <div class="goBack"><span class="goBack${tweet.id}">←</span></div>
                   <!--go-back-->
                   <div class="postReply">
-                    <button type="submit">Reply</button>
+                    <button class="replyButton-id${tweet.id} ${tweet.id}" type="submit">Reply</button>
                   </div>
                   <!--post-tweet-->
                 </div><!--typeReplyFooter-->
@@ -192,9 +203,10 @@ const renderTweet = (tweetsArray) => {
     }
   });
 
-  clickReplyIcon();
+  clickCommentToTweet();
   clickLikes();
   clickRetweets();
+  goToCommentTree();
 };
 
 //top user info
@@ -240,16 +252,9 @@ const changeUserImg = (parseUser) => {
   }
 };
 
-export const clickNewTweet = () => {
-  if (newTweet) {
-    const newTweet = document.querySelector(".createNewTweet");
-    newTweet.addEventListener("click", (e) => {
-      console.log(e.target);
-    });
-  }
-};
-
 API.getTweets().then((tweets) => {
+  console.log(tweets);
+
   localStorage.setItem("EveryTweets", JSON.stringify(tweets));
 
   renderTweet(tweets);

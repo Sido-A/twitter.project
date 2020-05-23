@@ -2,7 +2,6 @@ import "./scss/style.scss";
 import API from "./API";
 import { getUsers } from "./API";
 import "./home-tweet";
-import "./comment.tweet";
 import "./create.new.tweet";
 //avatar_url
 //name
@@ -51,32 +50,3 @@ const clickLogin = () => {
 };
 
 clickLogin();
-
-// <div class="userInfo">
-//   <!--user-->
-//   <div class="userImg">
-//     <img src="../src/img/camera.png" alt="some image" />
-//   </div>
-//   <div class="twitterViewUser">
-//     <h1></h1>
-//     <div class="twitterUserDetails">
-//       <div class="tagNameLocation">
-//         <p class="tagName">&#64;name</p>
-//         <p class="location">location</p>
-//       </div>
-//       <!--tagNameLocation-->
-//       <div class="follows">
-//         <p class="followers">
-//           <strong class="number">1</strong> Followers
-//         </p>
-//         <p class="following">
-//           <strong class="number">1</strong> Following
-//         </p>
-//       </div>
-//       <!--follows-->
-//     </div>
-//     <!--twitterUserDetails-->
-//   </div>
-//   <!--twitterViewUser-->
-// </div>
-//   <!--userInfo-->   user

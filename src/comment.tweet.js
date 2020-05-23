@@ -5,21 +5,14 @@ API.getTweets().then((res) => {
   });
 });
 
-//DOM
-const tweetMessages = document.querySelectorAll(".tweetMessage");
-
-// console.log(tweetMessages);
-
-const allMessages = () => {
-  if (tweetMessages) {
-    tweetMessages.forEach((tweetMessage) => {
+export const goToCommentTree = () => {
+  const tweetMessages = document.querySelectorAll(".tweetMessage");
+  tweetMessages.forEach((tweetMessage) => {
+    if (tweetMessage) {
       tweetMessage.addEventListener("click", (e) => {
-        // console.log(e);
-
-        // location.replace("./comments.html")
+        console.log(e.target);
       });
-    });
-  }
+    }
+  });
 };
-
-allMessages();
+goToCommentTree();

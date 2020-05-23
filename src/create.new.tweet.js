@@ -1,6 +1,7 @@
 import { parseUser } from "./home-tweet";
 import { createNewTweet } from "./json.constructor";
 
+
 const dateObj = new Date();
 const month = dateObj.getUTCMonth() + 1; //months from 1-12
 const day = dateObj.getUTCDate();
@@ -16,6 +17,7 @@ const postNewTweet = () => {
       const textValue = tweetBodyText.value;
       const userId = parseUser.id;
       const newTweetObj = {
+
         userId: userId,
         content: textValue,
         likes: 0,
