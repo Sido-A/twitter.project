@@ -1,6 +1,7 @@
-import { countUpNumbers, sendReplies } from "./json.constructor";
+import { countUpNumbers, addComment } from "./json.constructor";
 import API from "./API";
 import { newDate } from "./create.new.tweet";
+import "./comment.tweet";
 import { goToCommentTree} from"./comment.tweet";
 
 
@@ -96,7 +97,7 @@ const postReply = () => {
               date: newDate,
             };
 
-            sendReplies(newReplyCommentObj);
+            addComment(newReplyCommentObj);
           }
 
           location.reload();
@@ -106,12 +107,6 @@ const postReply = () => {
   });
 };
 
-// const currentReplies = document.querySelectorAll(".reply p")
-// currentReplies.forEach(currentReply => {
-//   const currentTotalReplies = parseInt(currentReply.innerText) + 1;
-//   console.log("update", currentTotalReplies);
-//   currentReply.innerText = currentTotalReplies;
-// })
 
 //show comment input when click reply icon and hide with arrow click
 const clickCommentToTweet = () => {
@@ -150,10 +145,6 @@ const renderTweet = (tweetsArray) => {
   tweetsArray.forEach((tweet) => {
     const userName = tweet.user.name;
 
-    if (tweet.reply === undefined) {
-      tweet.reply = 0;
-    }
-
     if (tweetContainer) {
       const tweetBox = document.createElement("div");
       tweetBox.classList.add("tweet", `tweet-id${tweet.id}`);
@@ -164,8 +155,8 @@ const renderTweet = (tweetsArray) => {
           </div>
           <!--tweetHeader-->
           <div class="tweetBody">
-            <div class="tweetMessage">
-              <p>${tweet.content}</p>
+            <div class="tweetMessage ${tweet.id} tweetMessage-id${tweet.id}">
+              <p class="content ${tweet.id} content-id${tweet.id}">${tweet.content}</p>
             </div>
             <!--tweetMessage-->
             <div class="like-share-icons">
@@ -253,8 +244,7 @@ const changeUserImg = (parseUser) => {
 };
 
 API.getTweets().then((tweets) => {
-  console.log(tweets);
-
+  // console.log(tweets);
   localStorage.setItem("EveryTweets", JSON.stringify(tweets));
 
   renderTweet(tweets);

@@ -31,8 +31,8 @@
       "id": 1,
       "userId": 1,
       "content": "Lip-Sync for Your Life",
-      "likes": 101,
-      "retweets": 45,
+      "likes": 110,
+      "retweets": 49,
       "date": "26/05/2020",
       "retweet": 40
     },
@@ -587,6 +587,55 @@
       "content": "TEST POST YAAYYAYAY",
       "date": "23/5/2020",
       "id": 63
+    },
+    {
+      "userId": 1,
+      "tweetId": 1,
+      "content": "TEST TEST POST TEST 2nd",
+      "date": "24/5/2020",
+      "id": 64
+    },
+    {
+      "userId": 1,
+      "tweetId": 1,
+      "content": "TEST POST 3RD",
+      "date": "24/5/2020",
+      "id": 65
+    },
+    {
+      "userId": 4,
+      "tweetId": 18,
+      "content": "ARgh bob",
+      "date": "24/5/2020",
+      "id": 66
+    },
+    {
+      "userId": 5,
+      "tweetId": 26,
+      "content": "shut up bob",
+      "date": "24/5/2020",
+      "id": 68
+    },
+    {
+      "userId": 5,
+      "tweetId": 26,
+      "content": "another test post yoyoyo",
+      "date": "24/5/2020",
+      "id": 69
+    },
+    {
+      "userId": 5,
+      "tweetId": 18,
+      "content": "CUTE CAT",
+      "date": "24/5/2020",
+      "id": 70
+    },
+    {
+      "userId": 5,
+      "tweetId": 18,
+      "content": "TEST POST 1st, 22:27BST",
+      "date": "24/5/2020",
+      "id": 71
     }
   ]
 }

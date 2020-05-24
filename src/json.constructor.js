@@ -1,5 +1,4 @@
 import { API_ENDPOINT } from "./API";
-console.log(API_ENDPOINT);
 
 //count up likes, retweets,reply numbers
 export const countUpNumbers = async (id, countUp) => {
@@ -44,7 +43,9 @@ export const createNewTweet = async (newCommentBody) => {
     .catch((error) => error);
 };
 
-export const sendReplies = async (commentToTweet) => {
+export const addComment = async (commentToTweet) => {
+  console.log(commentToTweet);
+  
   const configObjectPatch = {
     method: "POST",
     headers: {
@@ -64,28 +65,6 @@ export const sendReplies = async (commentToTweet) => {
     })
     .catch((error) => error);
 };
-
-//post
-// export const postComment = async (id, newComment) => {
-//     const configObjectPatch = {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/json",
-//             Accept: "application/json",
-//         },
-//         body: JSON.stringify(newComment),
-//     };
-
-//     return await fetch(`${API_ENDPOINT}/tweets/${id}`, configObjectPatch)
-//         .then((res) => {
-//             if (res.ok) {
-//                 return res.json();
-//             } else {
-//                 throw "Oops we couldn't update that!";
-//             }
-//         })
-//         .catch((error) => error);
-// };
 
 //delete replies
 // export const deletedReplies = async (id) => {
@@ -108,4 +87,4 @@ export const sendReplies = async (commentToTweet) => {
 //         .catch((error) => error);
 // };
 
-// deletedReplies(101)
+// deletedReplies(67)

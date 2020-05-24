@@ -1,5 +1,7 @@
 .commentsWrapper {
   background-color: #000;
+  min-height: 100vh;
+  position: relative;
   .commentsHeader {
     color: #faff00;
     border-bottom: 1px solid #faff00;
@@ -19,7 +21,6 @@
 
   .commentsBodyWrapper {
     color: #fff;
-    position: relative;
 
     .commentsBody {
       width: 100%;
@@ -27,8 +28,8 @@
       margin: 0 auto;
       box-sizing: border-box;
 
-      .MainComment {
-        .MainCommentHeader {
+      .mainComment {
+        .mainCommentHeader {
           display: flex;
           margin-top: 1em;
           .profilePhoto {
@@ -44,16 +45,36 @@
           }
 
           .userDetails {
-            width: 70%;
-            border-bottom: 1px solid rgb(158, 0, 163);
+            position: relative;
+
+            &::before {
+                content: "";
+                width: 200px;
+                border-bottom: 1px solid rgb(158, 0, 163);
+                position: absolute;
+                bottom: 25px;
+              }
+
+              &::after {
+                content: "";
+                width: 100px;
+                border-bottom: 1px solid #fff;
+                position: absolute;
+                bottom: 20px;
+              }
+
+            h1 {
+              font-size: 1.5em;
+            }
           }
         }
 
-        .MainCommentBody {
-          margin-top: 2em;
+        .mainCommentBody {
+          min-height: 70px;
+          padding: 1.2em 0;
         }
 
-        .MainCommentFooter {
+        .mainCommentFooter {
           margin-top: 2em;
 
           .like-share-icons {
@@ -169,6 +190,7 @@
 
         .replyToComment {
           display: none;
+
         }
 
         .replyToCommentBlock {
@@ -187,11 +209,12 @@
           }
 
           .replyToCommentFooter {
+            cursor: pointer;
             display: flex;
             justify-content: space-between;
             margin-top: 0.5em;
 
-            .goBack {
+            .addCommentGoBack {
               p {
                 font-size: 2em;
               }
@@ -225,30 +248,51 @@
             }
 
             .userDetails {
-              width: 40%;
-              height: 30px;
+              width: 70%;
+              min-height: 50px;
               display: flex;
-              border-bottom: 1px solid rgb(158, 0, 163);
               overflow: hidden;
+              position: relative;
+
+              &::before {
+                content: "";
+                width: 150px;
+                border-bottom: 1px solid rgb(158, 0, 163);
+                position: absolute;
+                bottom: 25px;
+              }
+
+              &::after {
+                content: "";
+                width: 100px;
+                border-bottom: 1px solid #fff;
+                position: absolute;
+                bottom: 20px;
+              }
 
               h1 {
-                font-size: 1em;
+                font-size: 0.9em;
                 margin-right: 0.5em;
+              }
+
+              p {
+                font-size: 0.8em;
               }
             }
           }
           .treeCommentBody {
             margin-top: 1em;
             padding-bottom: 1em;
+            min-height: 100px;
             border-bottom: 1px solid #fff;
           }
         }
       }
     }
-    .CreateNewCommentButton {
-      position: fixed;
-      right: 0;
-      bottom: 0;
-    }
+  }
+  .CreateNewCommentButton {
+    position: fixed;
+    right: 0;
+    bottom: 0;
   }
 }

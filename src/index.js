@@ -1,16 +1,9 @@
 import "./scss/style.scss";
-import API from "./API";
 import { getUsers } from "./API";
 import "./home-tweet";
 import "./create.new.tweet";
-//avatar_url
-//name
-//tweets
 
 // Your code here
-
-API.getTweets();
-// clickNewTweet();
 
 //DOM
 const loginForm = document.querySelector(".loginForm");
