@@ -1,6 +1,5 @@
 .tweeting {
   position: relative;
-  min-height: 896px;
 
   .blackBack {
     @include blackBack("../img/tweet-wave.svg");
@@ -79,10 +78,11 @@
     position: absolute;
     background-image: url(../img/Polygon-1.svg), url(../img/Polygon-2.svg),
       url(../img/Polygon-3.svg);
-    background-position: top 15% right 0px, top 35% left 0px,
-      top -15px right 50%;
+    background-position: 
+    top 15% right 0px, 
+    top 35% left 0px,
+    top -15px right 50%;
     background-repeat: no-repeat;
-
     width: 100%;
     height: 100vh;
   }

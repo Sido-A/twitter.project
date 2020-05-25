@@ -1,19 +1,37 @@
 body {
+  overflow: hidden;
   overflow-y: scroll;
 }
 .twitterDefaultView {
   position: relative;
   box-sizing: border-box;
   min-height: 100vh;
-  // overflow-y: scroll;
 
   &::before {
     content: "";
+    background-image: url(../img/tweets.page.human.svg);
+    background-repeat: no-repeat;
+    position: fixed;
+    top: 50%;
+    min-width: 200px;
+    height: 240px;
+    z-index: -1;
+  }
+
+  &::after {
+    content: "";
     position: absolute;
     width: 12px;
-    background-image: url("../img/Polygon-1.svg");
-    background-image: url("../img/Polygon-2.svg");
-    background-image: url("../img/Polygon-3.svg");
+    position: fixed;
+    background-image: url(../img/Polygon-1.svg),url(../img/Polygon-2.svg),url(../img/Polygon-3.svg);
+    background-position: 
+    top 15% right 0px, //purple right
+    top 50% left 0px, // purple left
+    top 5% right 50%; // yellow
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
   }
 
   .blackBack {
@@ -28,7 +46,6 @@ body {
       justify-content: space-between;
 
       .userImgWrap {
-        cursor: pointer;
         width: 100%;
         max-width: 86px;
         max-height: 86px;
@@ -43,8 +60,10 @@ body {
           bottom: 0;
           left: 50%;
           transform: translate(-50%, -50%);
-          object-fit: scale-down;
+          object-fit: cover;
           width: 100%;
+          height: 100%;
+          border-radius: 50%;
         }
 
         .profileImg {
@@ -54,8 +73,12 @@ body {
           bottom: 50%;
           left: 32%;
         }
+
         .chooseFile {
-          // visibility: hidden;
+          cursor: pointer;
+          border-radius: 50%;
+          font-size: 100px;
+          height: 100%;
           width: 100%;
           position: absolute;
           top: 50%;
@@ -63,7 +86,12 @@ body {
           bottom: 0;
           left: 50%;
           transform: translate(-50%, -50%);
-          z-index: 10;
+        }
+
+        .inputFile {
+          font-size: 14px;
+          opacity: 0;
+          z-index: -1;          
         }
       }
 
@@ -80,11 +108,28 @@ body {
         }
 
         .twitterUserDetails {
-          border-bottom: 1px solid rgba(128, 0, 128, 0.9);
           display: flex;
           flex-direction: column;
           justify-content: space-evenly;
           text-align: left;
+          position: relative;
+
+
+          &::before {
+            content: "";
+            width: 172px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.9);
+            position: absolute;
+            bottom: -5px;
+          }
+
+          &::after {
+            content: "";
+            width: 247px;
+            border-bottom: 1px solid rgba(128, 0, 128, 0.9);
+            position: absolute;
+            bottom: 0;
+          }
 
           .tagNameLocation {
             display: flex;
@@ -126,7 +171,6 @@ body {
       margin: 0 auto;
       margin-top: 2em;
       border-radius: 2%;
-      border: 1px solid rgba(129, 129, 129, 0.8);
       box-shadow: 1px 1px 1px 1px rgba(106, 106, 107, 0.5);
 
       &:hover {

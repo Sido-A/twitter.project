@@ -1,9 +1,8 @@
 import { countUpNumbers, addComment } from "./json.constructor";
 import API from "./API";
 import { newDate } from "./create.new.tweet";
-import "./comment.tweet";
-import { goToCommentTree} from"./comment.tweet";
-
+import "./comment.tree";
+import { goToCommentTree } from "./comment.tree";
 
 //DOM
 const userInfo = document.querySelector(".userInfo");
@@ -106,7 +105,6 @@ const postReply = () => {
     }
   });
 };
-
 
 //show comment input when click reply icon and hide with arrow click
 const clickCommentToTweet = () => {
@@ -233,22 +231,24 @@ export const renderUserInfo = (parseUser) => {
   }
 };
 
-const changeUserImg = (parseUser) => {
-  const profileImg = document.querySelector(".profileImg");
+const changeUserImg = () => {
   if (userImgWrap) {
-    userImgWrap.addEventListener("click", () => {
-      profileImg.id = "changeUserImg";
-      profileImg.src = parseUser.avatar_url;
+    window.addEventListener("load", function () {
+      document.querySelector('input[type="file"]').addEventListener("change", function () {              
+          if (this.files && this.files[0]) {
+            const profileImg = document.querySelector(".profileImg");
+            profileImg.id = "changeUserImg"
+            profileImg.src = URL.createObjectURL(this.files[0]); // set src to blob url
+          }
+        });
     });
   }
 };
 
 API.getTweets().then((tweets) => {
-  // console.log(tweets);
   localStorage.setItem("EveryTweets", JSON.stringify(tweets));
-
   renderTweet(tweets);
 });
 
 renderUserInfo(parseUser);
-changeUserImg(parseUser);
+changeUserImg();
