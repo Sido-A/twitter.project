@@ -67,7 +67,7 @@ const renderTreeComments = () => {
       treeComment.classList.add("treeComment");
       treeComment.innerHTML = `<div class="treeCommentHeader">
                 <div class="profilePhoto">
-                  <img src="#" alt="profile photo" />
+                  <img src="${sub.user.avatar_url}" alt="profile photo" />
                 </div>
                 <!--profilePhoto-->
                 <div class="userDetails">
@@ -98,7 +98,7 @@ const renderMainComment = () => {
     mainComment.innerHTML = `
   <div class="mainCommentHeader">
     <div class="profilePhoto">
-      <img src="#" alt="profile photo" />
+      <img src="${main.url}" alt="profile photo" />
     </div>
     <!--profilePhoto-->
     <div class="userDetails">
@@ -198,6 +198,7 @@ const getSubCommentTree = async (id) => {
           likes: res.likes,
           retweets: res.retweets,
           replies: res.comments.length,
+          url: res.user.avatar_url,
         };
         console.log(mainCommentObj);
 
