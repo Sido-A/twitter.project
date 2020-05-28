@@ -35,6 +35,7 @@ const closeAddComment = () => {
 
   if (addCommentGoBack) {
     addCommentGoBack.addEventListener("click", (e) => {
+      
       const replyToCommentBlock = document.querySelector(
         ".replyToCommentBlock"
       );
@@ -46,7 +47,7 @@ const closeAddComment = () => {
 const openAddComment = () => {
   const reply = document.querySelector(".reply");
   if (reply) {
-    reply.addEventListener("click", (e) => {
+    reply.addEventListener("click", (e) => {      
       const replyToCommentBlock = document.querySelector(
         ".replyToCommentBlock"
       );
@@ -204,8 +205,6 @@ const getSubCommentTree = async (id) => {
 
         storeMainComment(mainCommentObj);
       }
-      // .content
-      // user.name// user.name(@)
     );
 };
 
