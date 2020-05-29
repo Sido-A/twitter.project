@@ -13,8 +13,18 @@ const userImgWrap = document.querySelector(".userImgWrap");
 const tweetContainer = document.querySelector(".tweetContainer");
 const newTweet = document.querySelector(".createNewTweet");
 
+const lookForNumber = (arr) => {
+  let newArr = [];
+  arr.forEach((a) => {
+    const parseNumber = parseInt(a);
+    if (!isNaN(parseNumber)) {
+      newArr.push(parseNumber);
+    }
+  });
+  return newArr;
+};
 
-const clickRetweets = () => {
+export const clickRetweets = () => {
   const retweets = document.querySelectorAll(".retweet");
   const EveryTweets = JSON.parse(localStorage.getItem("EveryTweets"));
 
@@ -23,8 +33,9 @@ const clickRetweets = () => {
       retweet.addEventListener("click", (e) => {
         const tweets = document.querySelectorAll(".tweet");
         tweets.forEach((tweet) => {
-          // need to find a solution to look for a number on array of string :/
-          const targetId = e.target.classList[1];
+
+          const classList = e.target.classList;
+          const targetId = lookForNumber(classList);
 
           const hasClass = tweet.classList.contains(`tweet-id${targetId}`);
           const retweetCounter = document.querySelector(
@@ -49,7 +60,7 @@ const clickRetweets = () => {
   });
 };
 
-const clickLikes = () => {
+export const clickLikes = () => {
   const likes = document.querySelectorAll(".likes");
   const EveryTweets = JSON.parse(localStorage.getItem("EveryTweets"));
   likes.forEach((like) => {
@@ -57,8 +68,9 @@ const clickLikes = () => {
       like.addEventListener("click", (e) => {        
         const tweets = document.querySelectorAll(".tweet");
         tweets.forEach((tweet) => {
-          // need to find a solution to look for a number on array of string :/
-          const targetId = e.target.classList[1];          
+          const classList = e.target.classList;
+          const targetId = lookForNumber(classList);
+
           const hasClass = tweet.classList.contains(`tweet-id${targetId}`);
           const likeCounter = document.querySelector(`.likesNumber${targetId}`);
           if (hasClass) {
@@ -256,7 +268,6 @@ const changeUserImg = () => {
 
 API.getTweets().then((tweets) => {
   localStorage.setItem("EveryTweets", JSON.stringify(tweets));
-
   renderTweet(tweets);
 });
 

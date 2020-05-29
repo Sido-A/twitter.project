@@ -3,6 +3,7 @@ import { parseUser } from "./home-tweet";
 import { createNewTweet, addComment } from "./json.constructor";
 import { newDate } from "./create.new.tweet";
 
+
 //DOM
 const getSubCommentStringify = JSON.parse(localStorage.getItem("subComment"));
 const getMainCommentStringify = JSON.parse(localStorage.getItem("mainComment"));
@@ -93,7 +94,6 @@ const renderMainComment = () => {
   const mainCommentWrapper = document.querySelector(".mainCommentWrapper");
   if (mainCommentWrapper) {
     const main = getMainCommentStringify;
-    console.log("getStringify", main);
     const mainComment = document.createElement("div");
     mainComment.classList.add(`mainComment`, `${main.id}`);
     mainComment.innerHTML = `
